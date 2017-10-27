@@ -7,6 +7,8 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import dev.sgp.util.Constantes;
+
 /**
  * @author ETY9
  *
@@ -22,8 +24,8 @@ public class Collaborateur {
 	private String prenom;
 	/** dDN : Date */
 	private Date dDN;
-	/** Adresse : String */
-	private String Adresse;
+	/** adresse : String */
+	private String adresse;
 	/** nSS : String */
 	private String nSS;
 	/** emailPro : String */
@@ -34,6 +36,11 @@ public class Collaborateur {
 	private Date dateHeureCreation ;
 	/** actif : Boolean */
 	private Boolean actif;
+	
+	/** intitulePoste : String */
+	private String intitulePoste;
+	/** departement : Departement */
+	private Departement departement;
 	
 	private Integer CollaboGlobalId = 0;
 	
@@ -61,14 +68,16 @@ public class Collaborateur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dDN = dDN;
-		this.Adresse = adresse;
+		this.adresse = adresse;
 		this.nSS = nSS;
-		this.emailPro = this.nom + this.prenom +"@"+ResourceBundle.getBundle("application").getString("mailSuffixe");
+		this.emailPro = this.nom +"."+ this.prenom +"@"+ResourceBundle.getBundle("application").getString("mailSuffixe");
 		this.photo = "images/pdg.jpg";
 		this.dateHeureCreation = Date.from(Instant.now());
 		this.actif = true;
+		this.departement = Constantes.DEPART_SERVICE.listerDepartements().get(0);
+		this.intitulePoste = "Larbin !";
 	}
-	
+
 	/**
 	 * @param id
 	 * @param matricule
@@ -81,22 +90,28 @@ public class Collaborateur {
 	 * @param photo
 	 * @param dateHeureCreation
 	 * @param actif
+	 * @param intitulePoste
+	 * @param departement
 	 */
 	public Collaborateur(int id, String matricule, String nom, String prenom, Date dDN, String adresse, String nSS,
-			String emailPro, String photo, Date dateHeureCreation, Boolean actif) {
+			String emailPro, String photo, Date dateHeureCreation, Boolean actif, String intitulePoste,
+			Departement departement) {
 		super();
 		this.id = id;
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dDN = dDN;
-		this.Adresse = adresse;
+		this.adresse = adresse;
 		this.nSS = nSS;
 		this.emailPro = emailPro;
 		this.photo = photo;
 		this.dateHeureCreation = dateHeureCreation;
 		this.actif = actif;
+		this.intitulePoste = intitulePoste;
+		this.departement = departement;
 	}
+
 	/**
 	 * Getter for id.
 	 * @return the id
@@ -168,18 +183,18 @@ public class Collaborateur {
 		this.dDN = dDN;
 	}
 	/**
-	 * Getter for Adresse.
+	 * Getter for adresse.
 	 * @return the adresse
 	 */
 	public String getAdresse() {
-		return Adresse;
+		return adresse;
 	}
 	/**
-	 * Setter for Adresse
+	 * Setter for adresse
 	 * @param adresse the adresse to set
 	 */
 	public void setAdresse(String adresse) {
-		Adresse = adresse;
+		this.adresse = adresse;
 	}
 	/**
 	 * Getter for nSS.
@@ -250,6 +265,38 @@ public class Collaborateur {
 	 */
 	public void setActif(Boolean actif) {
 		this.actif = actif;
+	}
+
+	/**
+	 * Getter for intitulePoste.
+	 * @return the intitulePoste
+	 */
+	public String getIntitulePoste() {
+		return intitulePoste;
+	}
+
+	/**
+	 * Setter for intitulePoste
+	 * @param intitulePoste the intitulePoste to set
+	 */
+	public void setIntitulePoste(String intitulePoste) {
+		this.intitulePoste = intitulePoste;
+	}
+
+	/**
+	 * Getter for departement.
+	 * @return the departement
+	 */
+	public Departement getDepartement() {
+		return departement;
+	}
+
+	/**
+	 * Setter for departement
+	 * @param departement the departement to set
+	 */
+	public void setDepartement(Departement departement) {
+		this.departement = departement;
 	}
 	
 	

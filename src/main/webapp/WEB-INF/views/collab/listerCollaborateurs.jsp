@@ -1,3 +1,6 @@
+<%@page import="dev.sgp.entite.Collaborateur"%>
+<%@page import="dev.sgp.entite.Departement"%>
+<%@page import="dev.sgp.util.Constantes"%>
 <%@page language="java" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="dev.sgp.web.ListerCollaborateursController"%>
@@ -16,7 +19,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/style/monStyle.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/style/monStyle.css">
 
 </head>
 
@@ -52,83 +56,97 @@
 	<!-- Partie haute -->
 	<div class="form-group row">
 		<!-- Btn ajouter nouveau collaborateur-->
-			<div class="col-sm">
-				<button id="btnNouvCollabo" href="./creer.html" type="button"
-					class="btn btn-primary float-right mt-2">Créer nouveau collaborateur</button>
-			</div>
+		<div class="col-sm">
+			<button id="btnNouvCollabo" href="./creer.html" type="button"
+				class="btn btn-primary float-right mt-2">Créer nouveau
+				collaborateur</button>
 		</div>
+	</div>
 	<h1>Les collaborateurs</h1>
 
 	<!-- Barre de recherche-->
-		<form>
-			<div class="row">
-				<div class="form-group col-5">
-					<label class="form-label float-right" for="rechercheByName">Rechercher
-						un nom ou un prénom qui commence par :</label>
-				</div>
-				<div class="form-group col-2">
-					<input id="rechercheByName" class="form-control float-left"
-						type="text" />
-				</div>
-				<div class="form-group col-1">
-					<button id="btnRechercher" type="button" class="btn-sm btn-primary">Rechercher</button>
-				</div>
-				<div class="form-group col-1">
-					<input type="checkbox" id="checkBoxCollaboDesact"
-						class="float-right">
-				</div>
-				<div class="form-group col-3">
-					<label class="form-label float-left" for="checkBoxCollaboDesact">Voir
-						les collaborateurs désactivés</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="form-group col-5">
-					<label class="form-label float-right" for="filterDepartement">Filtrer
-						par département :</label>
-				</div>
-				<div class="form-group col-2">
-					<select class="form-control">
-						<option selected>Tous</option>
-						<option>Comptabilité</option>
-						<option>Ressources humaines</option>
-					</select>
-				</div>
-			</div>
-		</form>
+	<form>
 		<div class="row">
-			<div class="col-sm-3">
-				<div class="card">
-					<div class="card-header">BARBASTE Clément</div>
-					<div class="row">
-						<div class="col-3">
-							<img class="mt-3 mb-3 mr-3 ml-3" width="80px" height="100px" src="<%=request.getContextPath()%>/images/pdg.jpg" alt="Card image photo collaborateur"/>
-						</div>
-						<div class="col-9">
-							<div class="row">
-								<!--Libels -->
-								<div class="col">
-									<div class="row">Fonction :</div>
-									<div class="row">Département :</div>
-									<div class="row">Email :</div>
-									<div class="row">Téléphone :</div>
-								</div>
-								<!--Data -->
-								<div class="col">
-									<div class="row">PDG</div>
-									<div class="row">31</div>
-									<div class="row">monEmail@gmail.com</div>
-									<div class="row">00 11 22 33 44</div>
-								</div>
+			<div class="form-group col-5">
+				<label class="form-label float-right" for="rechercheByName">Rechercher
+					un nom ou un prénom qui commence par :</label>
+			</div>
+			<div class="form-group col-2">
+				<input id="rechercheByName" class="form-control float-left"
+					type="text" />
+			</div>
+			<div class="form-group col-1">
+				<button id="btnRechercher" type="button" class="btn-sm btn-primary">Rechercher</button>
+			</div>
+			<div class="form-group col-1">
+				<input type="checkbox" id="checkBoxCollaboDesact"
+					class="float-right">
+			</div>
+			<div class="form-group col-3">
+				<label class="form-label float-left" for="checkBoxCollaboDesact">Voir
+					les collaborateurs désactivés</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-5">
+				<label class="form-label float-right" for="filterDepartement">Filtrer
+					par département :</label>
+			</div>
+			<div class="form-group col-2">
+				<select class="form-control">
+					<option selected>Tous</option>
+					<%
+						for (Departement d : Constantes.DEPART_SERVICE.listerDepartements()) {
+					%>
+					<option><%=d.getNom()%></option>
+					<%
+						}
+					%>
+				</select>
+			</div>
+		</div>
+	</form>
+	<div class="row">
+		<%
+			for (Collaborateur c : Constantes.COLLAB_SERVICE.listerCollaborateurs()) {
+		%>
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-header"><%=c.getNom() %> <%=c.getPrenom() %></div>
+				<div class="row">
+					<div class="col-3">
+						<img class="mt-3 mb-3 mr-3 ml-3" width="80px" height="100px"
+							src="<%=request.getContextPath()%>/<%=c.getPhoto()%>"
+							alt="Card image photo collaborateur" />
+					</div>
+					<div class="col-9">
+						<div class="row">
+							<!--Libels -->
+							<div class="col">
+								<div class="row">Fonction :</div>
+								<div class="row">Département :</div>
+								<div class="row">Email :</div>
+								<div class="row">Téléphone :</div>
+							</div>
+							<!--Data -->
+							<div class="col">
+								<div class="row"><%=c.getIntitulePoste() %></div>
+								<div class="row"><%=c.getDepartement().getNom() %></div>
+								<div class="row"><%=c.getEmailPro() %></div>
+								<div class="row"><%="None" %></div>
 							</div>
 						</div>
 					</div>
-					<div class="card-footer">
-						<a href="#" class="btn btn-primary float-right">Editer</a>
-					</div>
+				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-primary float-right">Editer</a>
 				</div>
 			</div>
 		</div>
+		<%
+			}
+		%>
+	</div>
 </body>
 
 </html>
