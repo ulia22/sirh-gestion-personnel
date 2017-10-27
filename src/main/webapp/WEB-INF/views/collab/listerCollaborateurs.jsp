@@ -1,7 +1,7 @@
+<%@page language="java" pageEncoding="UTF-8"%>
 <%@page import="dev.sgp.entite.Collaborateur"%>
 <%@page import="dev.sgp.entite.Departement"%>
 <%@page import="dev.sgp.util.Constantes"%>
-<%@page language="java" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="dev.sgp.web.ListerCollaborateursController"%>
 <!DOCTYPE html>
@@ -12,15 +12,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Lister les collaborateurs</title>
+
 <script src="<%=request.getContextPath()%>/jquery-3.2.1.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/style/monStyle.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/style/monStyle.css">
 
 </head>
 
@@ -111,7 +109,7 @@
 			for (Collaborateur c : Constantes.COLLAB_SERVICE.listerCollaborateurs()) {
 		%>
 		<div class="col-sm-3">
-			<div class="card">
+			<div class="card mt-3">
 				<div class="card-header"><%=c.getNom() %> <%=c.getPrenom() %></div>
 				<div class="row">
 					<div class="col-3">
@@ -139,7 +137,7 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<a href="#" class="btn btn-primary float-right">Editer</a>
+				<a href="<%=request.getContextPath()%>/collaborateur/editer?id=<%=c.getId()%>" class="btn btn-primary float-right">Editer</a>
 				</div>
 			</div>
 		</div>

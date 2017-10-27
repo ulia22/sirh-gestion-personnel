@@ -42,7 +42,14 @@ public class Collaborateur {
 	/** departement : Departement */
 	private Departement departement;
 	
-	private Integer CollaboGlobalId = 0;
+	/** banque : String */
+	private String banque;
+	/** iban : String */
+	private String iban;
+	/** bic : String */
+	private String bic;
+	
+	private static Integer CollaboGlobalId = 0;
 	
 	/**
 	 * 
@@ -78,6 +85,8 @@ public class Collaborateur {
 		this.intitulePoste = "Larbin !";
 	}
 
+	
+
 	/**
 	 * @param id
 	 * @param matricule
@@ -92,10 +101,13 @@ public class Collaborateur {
 	 * @param actif
 	 * @param intitulePoste
 	 * @param departement
+	 * @param banque
+	 * @param iban
+	 * @param bic
 	 */
 	public Collaborateur(int id, String matricule, String nom, String prenom, Date dDN, String adresse, String nSS,
 			String emailPro, String photo, Date dateHeureCreation, Boolean actif, String intitulePoste,
-			Departement departement) {
+			Departement departement, String banque, String iban, String bic) {
 		super();
 		this.id = id;
 		this.matricule = matricule;
@@ -110,6 +122,9 @@ public class Collaborateur {
 		this.actif = actif;
 		this.intitulePoste = intitulePoste;
 		this.departement = departement;
+		this.banque = banque;
+		this.iban = iban;
+		this.bic = bic;
 	}
 
 	/**
@@ -297,6 +312,54 @@ public class Collaborateur {
 	 */
 	public void setDepartement(Departement departement) {
 		this.departement = departement;
+	}
+
+	/**
+	 * Getter for banque.
+	 * @return the banque
+	 */
+	public String getBanque() {
+		return banque;
+	}
+
+	/**
+	 * Setter for banque
+	 * @param banque the banque to set
+	 */
+	public void setBanque(String banque) {
+		this.banque = banque;
+	}
+
+	/**
+	 * Getter for iban.
+	 * @return the iban
+	 */
+	public String getIban() {
+		return iban;
+	}
+
+	/**
+	 * Setter for iban
+	 * @param iban the iban to set
+	 */
+	public void setIban(String iban) {
+		this.iban = iban;
+	}
+
+	/**
+	 * Getter for bic.
+	 * @return the bic
+	 */
+	public String getBic() {
+		return bic;
+	}
+
+	/**
+	 * Setter for bic
+	 * @param bic the bic to set
+	 */
+	public void setBic(String bic) {
+		this.bic = bic;
 	}
 	
 	

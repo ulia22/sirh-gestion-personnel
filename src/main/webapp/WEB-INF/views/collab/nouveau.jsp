@@ -8,7 +8,7 @@
   <title>Nouveau collaborateur</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/style/monStyle.css">
-    <script src="<%=request.getContextPath()%>/jquery-3.2.1.min.js"></script>
+  <script src="<%=request.getContextPath()%>/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
   
