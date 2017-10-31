@@ -13,13 +13,29 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Lister les collaborateurs</title>
 
-<script src="<%=request.getContextPath()%>/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/style/monStyle.css">
+<script src="<%=request.getContextPath()%>/jquery-3.2.1.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+	type="text/javascript"></script>
 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/style/monStyle.css">
+
+<script type="text/javascript">
+
+function submit(){
+	document.forms[0].action="<%=request.getContextPath()%>
+	/collaborateurs/lister";
+		document.forms[0].mehtod = "GET";
+		document.forms[0].submit();
+	}
+</script>
 </head>
 
 <body class="container-fluid">
@@ -63,22 +79,47 @@
 	<h1>Les collaborateurs</h1>
 
 	<!-- Barre de recherche-->
-	<form>
+	<form action="">
 		<div class="row">
 			<div class="form-group col-5">
 				<label class="form-label float-right" for="rechercheByName">Rechercher
 					un nom ou un prénom qui commence par :</label>
 			</div>
 			<div class="form-group col-2">
-				<input id="rechercheByName" class="form-control float-left"
-					type="text" />
+				<%
+					if (request.getAttribute("rechercheByName") != null) {
+				%>
+				<input id="rechercheByName" name="rechercheByName"
+					class="form-control float-left" type="text"
+					value='<%=request.getAttribute("rechercheByName")%>' />
+				<%
+					} else {
+				%>
+				<input id="rechercheByName" name="rechercheByName"
+					class="form-control float-left" type="text" />
+				<%
+					}
+				%>
 			</div>
 			<div class="form-group col-1">
-				<button id="btnRechercher" type="button" class="btn-sm btn-primary">Rechercher</button>
+				<button id="btnRechercher" onclick="submit();" type="button"
+					class="btn-sm btn-primary">Rechercher</button>
 			</div>
 			<div class="form-group col-1">
-				<input type="checkbox" id="checkBoxCollaboDesact"
-					class="float-right">
+				<%
+					if (request.getAttribute("checkBoxCollaboDesact") == null
+							|| !request.getAttribute("checkBoxCollaboDesact").equals("on")) {
+				%>
+				<input type="checkbox" name="checkBoxCollaboDesact"
+					id="checkBoxCollaboDesact" class="float-right" />
+				<%
+					} else {
+				%>
+				<input type="checkbox" name="checkBoxCollaboDesact"
+					id="checkBoxCollaboDesact" class="float-right" checked />
+				<%
+					}
+				%>
 			</div>
 			<div class="form-group col-3">
 				<label class="form-label float-left" for="checkBoxCollaboDesact">Voir
@@ -91,26 +132,46 @@
 					par département :</label>
 			</div>
 			<div class="form-group col-2">
-				<select class="form-control">
+				<select class="form-control" name="departementFilter">
+					<%
+						if (request.getAttribute("departementFilter") == null
+								|| request.getAttribute("departementFilter").equals("Tous")) {
+					%>
 					<option selected>Tous</option>
 					<%
-						for (Departement d : Constantes.DEPART_SERVICE.listerDepartements()) {
+						} else {
+					%>
+					<option>Tous</option>
+					<%
+						}
+					%>
+					<%
+						for (Departement d : (List<Departement>) request.getAttribute("departements")) {
+							if (request.getAttribute("departementFilter") != null
+									&& request.getAttribute("departementFilter").equals(d.getNom())) {
+					%>
+					<option selected><%=d.getNom()%></option>
+					<%
+						} else {
 					%>
 					<option><%=d.getNom()%></option>
 					<%
+						}
 						}
 					%>
 				</select>
 			</div>
 		</div>
+
 	</form>
 	<div class="row">
 		<%
-			for (Collaborateur c : Constantes.COLLAB_SERVICE.listerCollaborateurs()) {
+			for (Collaborateur c : (List<Collaborateur>) request.getAttribute("collaborateurs")) {
 		%>
 		<div class="col-sm-3">
 			<div class="card mt-3">
-				<div class="card-header"><%=c.getNom() %> <%=c.getPrenom() %></div>
+				<div class="card-header"><%=c.getNom()%>
+					<%=c.getPrenom()%></div>
 				<div class="row">
 					<div class="col-3">
 						<img class="mt-3 mb-3 mr-3 ml-3" width="80px" height="100px"
@@ -128,16 +189,18 @@
 							</div>
 							<!--Data -->
 							<div class="col">
-								<div class="row"><%=c.getIntitulePoste() %></div>
-								<div class="row"><%=c.getDepartement().getNom() %></div>
-								<div class="row"><%=c.getEmailPro() %></div>
-								<div class="row"><%="None" %></div>
+								<div class="row"><%=c.getIntitulePoste()%></div>
+								<div class="row"><%=c.getDepartement().getNom()%></div>
+								<div class="row"><%=c.getEmailPro()%></div>
+								<div class="row"><%="None"%></div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="card-footer">
-				<a href="<%=request.getContextPath()%>/collaborateur/editer?id=<%=c.getId()%>" class="btn btn-primary float-right">Editer</a>
+					<a
+						href="<%=request.getContextPath()%>/collaborateur/editer?id=<%=c.getId()%>"
+						class="btn btn-primary float-right">Editer</a>
 				</div>
 			</div>
 		</div>

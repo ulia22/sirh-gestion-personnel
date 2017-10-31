@@ -6,16 +6,23 @@ package dev.sgp.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.sgp.entite.Collaborateur;
 import dev.sgp.entite.Departement;
 
 /**
  * @author ETY9
  *
  */
+/**
+ * @author ETY9
+ *
+ */
 public class DepartementService {
+	/** listeDepartements : List<Departement> */
 	List<Departement> listeDepartements = new ArrayList<>();
 	
+	/**
+	 * 
+	 */
 	public DepartementService(){
 		sauvegarderDepartement(new Departement(1,"Comptabilité"));
 		sauvegarderDepartement(new Departement(2,"Ressources Humaines"));
@@ -34,5 +41,18 @@ public class DepartementService {
 	 */
 	public void sauvegarderDepartement(Departement depart) {
 		listeDepartements.add(depart);
+	}
+	
+	/**
+	 * @param srv
+	 * @return
+	 */
+	public boolean isDepartementService(String srv){
+		if(this.listeDepartements != null){
+			return this.listeDepartements
+			.stream()
+			.anyMatch(d->d.getNom().equals(srv));
+		}
+		return false;
 	}
 }

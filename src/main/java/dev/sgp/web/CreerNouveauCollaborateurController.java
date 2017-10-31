@@ -7,12 +7,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -27,15 +22,21 @@ import dev.sgp.util.Constantes;
  * @author ETY9
  *
  */
+@SuppressWarnings("serial")
 public class CreerNouveauCollaborateurController extends HttpServlet {
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
 	ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/views/collab/nouveau.jsp").forward(req, resp);
 	}
 	
-	@SuppressWarnings("deprecation")
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
 	ServletException, IOException {
@@ -53,11 +54,20 @@ public class CreerNouveauCollaborateurController extends HttpServlet {
 			
 			Collaborateur col = new Collaborateur(req.getParameter("nom"), req.getParameter("prenom"), dateNaissance, req.getParameter("addr"), req.getParameter("nss"));
 			Constantes.COLLAB_SERVICE.sauvegarderCollaborateur(col);
+			
+			req.setAttribute("collaborateurs", Constantes.COLLAB_SERVICE.listerCollaborateurs());
+			req.setAttribute("departements", Constantes.DEPART_SERVICE.listerDepartements());
 			req.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(req, resp);
 		}
 		
 	}
 	
+	/**
+	 * @param parametersMap
+	 * @param rep
+	 * @return
+	 * @throws IOException
+	 */
 	protected boolean checkFormValidity(Map<String, String[]> parametersMap, HttpServletResponse rep) throws IOException{
 		StringBuilder erreur = new StringBuilder();
 		if(parametersMap.get("nom") == null || 

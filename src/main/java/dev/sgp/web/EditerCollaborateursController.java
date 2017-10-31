@@ -4,8 +4,6 @@
 package dev.sgp.web;
 
 import java.io.IOException;
-import java.text.ParseException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +49,7 @@ public class EditerCollaborateursController extends HttpServlet{
 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {	
+		req.getRequestDispatcher("/WEB-INF/views/collab/lister.jsp").forward(req, resp);
 	}
 }

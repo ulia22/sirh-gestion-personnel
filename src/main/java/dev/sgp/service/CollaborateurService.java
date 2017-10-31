@@ -13,10 +13,17 @@ import dev.sgp.entite.Collaborateur;
  *
  */
 public class CollaborateurService {
+	/** listeCollaborateurs : List<Collaborateur> */
 	List<Collaborateur> listeCollaborateurs = new ArrayList<>();
+	/**
+	 * @return
+	 */
 	public List<Collaborateur> listerCollaborateurs() {
 		return listeCollaborateurs;
 	}
+	/**
+	 * @param collab
+	 */
 	public void sauvegarderCollaborateur(Collaborateur collab) {
 		listeCollaborateurs.add(collab);
 	}

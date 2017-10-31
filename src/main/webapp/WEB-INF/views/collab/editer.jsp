@@ -23,14 +23,14 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 	type="text/javascript"></script>
-	
-	<script type="text/javascript">
+
+<script type="text/javascript">
 	function validate(){
 		document.forms[0].action="<%=request.getContextPath()%>/collaborateur/editer";
-		  document.forms[0].method="POST";
-		  document.forms[0].submit();
+		document.forms[0].method = "POST";
+		document.forms[0].submit();
 	}
-	</script>
+</script>
 <%
 	Collaborateur collab = (Collaborateur) request.getAttribute("collab");
 %>
@@ -65,8 +65,8 @@
 	</nav>
 	<div class="row">
 		<div class="text-center col-5">
-			<img src="<%=request.getContextPath()%>/<%=collab.getPhoto()%>" class="mt-5" alt="image collaborateur"
-				width="150" height="200" />
+			<img src="<%=request.getContextPath()%>/<%=collab.getPhoto()%>"
+				class="mt-5" alt="image collaborateur" width="150" height="200" />
 		</div>
 		<div class="col-7">
 			<div class="form-row">
@@ -114,9 +114,27 @@
 										</div>
 										<div class="form-group col-7">
 											<select id="inputGender" class="form-control">
+												<%
+													if (collab.getGender().equals("Male")) {
+												%>
 												<option selected>Male</option>
 												<option>Female</option>
 												<option>Autre</option>
+												<%
+													} else if (collab.getGender().equals("Female")) {
+												%>
+												<option>Male</option>
+												<option selected>Female</option>
+												<option>Autre</option>
+												<%
+													} else {
+												%>
+												<option>Male</option>
+												<option>Female</option>
+												<option selected>Autre</option>
+												<%
+													}
+												%>
 											</select>
 										</div>
 									</div>
@@ -145,7 +163,8 @@
 										</div>
 										<div class="form-group col-7">
 											<input type="date" class="form-control" id="inputDdn"
-												value="<%=collab.getdDN().getDay()%>/<%=collab.getdDN().getMonth()%>/19<%=collab.getdDN().getYear()%>" disabled placeholder="">
+												value="<%=collab.getdDN().getDay()%>/<%=collab.getdDN().getMonth()%>/19<%=collab.getdDN().getYear()%>"
+												disabled placeholder="">
 										</div>
 									</div>
 									<div class="form-row">
@@ -154,7 +173,7 @@
 										</div>
 										<div class="form-group col-7">
 											<textarea type="date" class="form-control" id="inputAddr"
-												 rows="3" cols="">
+												rows="3" cols="">
 												<%=collab.getAdresse()%>
                                                     </textarea>
 										</div>
@@ -266,8 +285,9 @@
 				</div>
 				<div class="row">
 					<div class="col">
-						<input type="submit" class=" mt-2 btn btn-primary float-right"
-							value="Enregistrer" />
+					<input type="hidden" value="<%=collab.getId() %>" name="collabId"/>
+						<input type="submit" class="mt-2 btn btn-primary float-right"
+							onCLick="validate();" value="Enregistrer" />
 					</div>
 				</div>
 			</form>

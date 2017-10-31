@@ -16,6 +16,8 @@ import dev.sgp.util.Constantes;
 public class Collaborateur {
 	/** id : int */
 	private int id;
+	/** gender : String */
+	private String gender;
 	/** matricule : String */
 	private String matricule; 
 	/** nom : String */
@@ -72,6 +74,7 @@ public class Collaborateur {
 		super();
 		this.id = CollaboGlobalId++;
 		this.matricule = nom.subSequence(0, 1) +""+ this.id;
+		this.gender = "Male";
 		this.nom = nom;
 		this.prenom = prenom;
 		this.dDN = dDN;
@@ -85,10 +88,9 @@ public class Collaborateur {
 		this.intitulePoste = "Larbin !";
 	}
 
-	
-
 	/**
 	 * @param id
+	 * @param gender
 	 * @param matricule
 	 * @param nom
 	 * @param prenom
@@ -105,11 +107,12 @@ public class Collaborateur {
 	 * @param iban
 	 * @param bic
 	 */
-	public Collaborateur(int id, String matricule, String nom, String prenom, Date dDN, String adresse, String nSS,
-			String emailPro, String photo, Date dateHeureCreation, Boolean actif, String intitulePoste,
+	public Collaborateur(int id, String gender, String matricule, String nom, String prenom, Date dDN, String adresse,
+			String nSS, String emailPro, String photo, Date dateHeureCreation, Boolean actif, String intitulePoste,
 			Departement departement, String banque, String iban, String bic) {
 		super();
 		this.id = id;
+		this.gender = gender;
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -360,6 +363,22 @@ public class Collaborateur {
 	 */
 	public void setBic(String bic) {
 		this.bic = bic;
+	}
+
+	/**
+	 * Getter for gender.
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * Setter for gender
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	
