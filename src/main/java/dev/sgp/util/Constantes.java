@@ -18,4 +18,5 @@ public interface Constantes {
 	/** DEPART_SERVICE : DepartementService */
 	DepartementService DEPART_SERVICE = new DepartementService();
 
+	
 }

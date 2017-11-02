@@ -31,6 +31,8 @@ public class CreerNouveauCollaborateurController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
 	ServletException, IOException {
+		boolean a;
+		if(a = false);
 		req.getRequestDispatcher("/WEB-INF/views/collab/nouveau.jsp").forward(req, resp);
 	}
 	

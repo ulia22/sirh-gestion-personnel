@@ -80,5 +80,11 @@ public class ListerCollaborateursController extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(req, resp);
 	}
 	
-	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws
+	ServletException, IOException {
+		List<Collaborateur> collaborateurs = collabService.listerCollaborateurs();
+		req.setAttribute("departements", Constantes.DEPART_SERVICE.listerDepartements());	
+		req.setAttribute("collaborateurs", collaborateurs);
+		req.getRequestDispatcher("/WEB-INF/views/collab/listerCollaborateurs.jsp").forward(req, resp);
+	}
 }

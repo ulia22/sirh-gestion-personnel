@@ -113,7 +113,7 @@
 											<label class="float-right" for="inputGender">Civilité</label>
 										</div>
 										<div class="form-group col-7">
-											<select id="inputGender" class="form-control">
+											<select id="inputGender" name="selectGender" class="form-control">
 												<%
 													if (collab.getGender().equals("Male")) {
 												%>
@@ -172,7 +172,7 @@
 											<label class="float-right" for="inputAddr">Addresse</label>
 										</div>
 										<div class="form-group col-7">
-											<textarea type="date" class="form-control" id="inputAddr"
+											<textarea type="date" class="form-control" id="inputAddr" name="inputAddr"
 												rows="3" cols="">
 												<%=collab.getAdresse()%>
                                                     </textarea>
@@ -193,7 +193,7 @@
 											<label class="float-right" for="inputTel">Téléphone</label>
 										</div>
 										<div class="form-group col-7">
-											<input type="tel" class="form-control" id="inputTel" value=""
+											<input type="tel" class="form-control" id="inputTel" name="inputTel" value=""
 												placeholder="00 11 22 33 44">
 										</div>
 									</div>
@@ -217,7 +217,7 @@
 											<label class="float-right" for="inputDep">Département</label>
 										</div>
 										<div class="form-group col-9">
-											<select id="inputDep" class="form-control">
+											<select id="inputDep" name="selectDep" class="form-control">
 												<%
 													for (Departement d : (List<Departement>) request.getAttribute("departements")) {
 														if (d.getId() == collab.getDepartement().getId()) {
@@ -240,7 +240,7 @@
 											<label class="float-right" for="inputNomPoste">Nom</label>
 										</div>
 										<div class="form-group col-9">
-											<input type="text" class="form-control" id="inputNomPoste"
+											<input type="text" class="form-control" id="inputNomPoste" name="inputNomPoste"
 												value="<%=collab.getIntitulePoste()%>" placeholder="">
 										</div>
 									</div>
@@ -265,7 +265,7 @@
 											<label class="float-right" for="inputIBAN">IBAN</label>
 										</div>
 										<div class="form-group col-9">
-											<input type="text" class="form-control" id="inputIBAN"
+											<input type="text" class="form-control" id="inputIBAN" name="inputIBAN"
 												value="<%=collab.getIban()%>" placeholder="">
 										</div>
 									</div>
@@ -274,7 +274,7 @@
 											<label class="float-right" for="inputBIC">BIC</label>
 										</div>
 										<div class="form-group col-9">
-											<input type="text" class="form-control" id="inputBIC"
+											<input type="text" class="form-control" id="inputBIC" name="inputBIC"
 												value="<%=collab.getBic()%>" placeholder="">
 										</div>
 									</div>

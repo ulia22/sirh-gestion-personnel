@@ -30,8 +30,7 @@
 <script type="text/javascript">
 
 function submit(){
-	document.forms[0].action="<%=request.getContextPath()%>
-	/collaborateurs/lister";
+		document.forms[0].action= <%=request.getContextPath()%>"/collaborateurs/lister";
 		document.forms[0].mehtod = "GET";
 		document.forms[0].submit();
 	}

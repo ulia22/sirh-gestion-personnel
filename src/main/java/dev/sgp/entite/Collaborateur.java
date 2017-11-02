@@ -50,6 +50,8 @@ public class Collaborateur {
 	private String iban;
 	/** bic : String */
 	private String bic;
+	/** telephone : String */
+	private String telephone;
 	
 	private static Integer CollaboGlobalId = 0;
 	
@@ -86,7 +88,11 @@ public class Collaborateur {
 		this.actif = true;
 		this.departement = Constantes.DEPART_SERVICE.listerDepartements().get(0);
 		this.intitulePoste = "Larbin !";
+		this.iban = "";
+		this.bic = "";
+		this.telephone = "";
 	}
+
 
 	/**
 	 * @param id
@@ -106,10 +112,11 @@ public class Collaborateur {
 	 * @param banque
 	 * @param iban
 	 * @param bic
+	 * @param telephone
 	 */
 	public Collaborateur(int id, String gender, String matricule, String nom, String prenom, Date dDN, String adresse,
 			String nSS, String emailPro, String photo, Date dateHeureCreation, Boolean actif, String intitulePoste,
-			Departement departement, String banque, String iban, String bic) {
+			Departement departement, String banque, String iban, String bic, String telephone) {
 		super();
 		this.id = id;
 		this.gender = gender;
@@ -128,6 +135,7 @@ public class Collaborateur {
 		this.banque = banque;
 		this.iban = iban;
 		this.bic = bic;
+		this.telephone = telephone;
 	}
 
 	/**
@@ -379,6 +387,38 @@ public class Collaborateur {
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	/**
+	 * Getter for telephone.
+	 * @return the telephone
+	 */
+	public String getTelephone() {
+		return telephone;
+	}
+
+	/**
+	 * Setter for telephone
+	 * @param telephone the telephone to set
+	 */
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	/**
+	 * Getter for CollaboGlobalId.
+	 * @return the collaboGlobalId
+	 */
+	public static Integer getCollaboGlobalId() {
+		return CollaboGlobalId;
+	}
+
+	/**
+	 * Setter for CollaboGlobalId
+	 * @param collaboGlobalId the collaboGlobalId to set
+	 */
+	public static void setCollaboGlobalId(Integer collaboGlobalId) {
+		CollaboGlobalId = collaboGlobalId;
 	}
 	
 	
